@@ -22,9 +22,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: "Printing Custom Message"
-        run: echo ${{ github.event.inputs.custom_message }}
+        run: echo ${{ inputs.custom_message }}
 
-      # New step to print the run_job value
       - name: "Printing run-job boolean value"
-        if: ${{ github.event.inputs.run_job == 'true' || github.event.inputs.run_job }}
-        run: echo ${{ github.event.inputs.run_job }}
+        if: ${{ inputs.run_job == true }}
+        run: echo ${{ inputs.run_job }}
