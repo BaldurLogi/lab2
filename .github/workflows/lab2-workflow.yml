@@ -11,18 +11,20 @@ on:
         type: string
         required: true
         description: "Enter a custom message"
-      
+
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
       - run: echo "Exploring Workflow Dispatch Trigger"
+
   job2:
     runs-on: ubuntu-latest
     steps:
       - name: "Printing Custom Message"
-        run: echo ${{ inputs.custom_message }}
+        run: echo ${{ github.event.inputs.custom_message }}
 
+      # New step to print the run_job value
       - name: "Printing run-job boolean value"
-        if: ${{ inputs.run_job }}
-        run: echo ${{ inputs.run_job }}
+        if: ${{ github.event.inputs.run_job == 'true' || github.event.inputs.run_job }}
+        run: echo ${{ github.event.inputs.run_job }}
